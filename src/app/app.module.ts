@@ -7,10 +7,12 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 
 
 import { AppComponent } from './app.component';
+import { BootstrapNavbarComponent } from './bootstrap-navbar/bootstrap-navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BootstrapNavbarComponent
   ],
   imports: [
     BrowserModule,
