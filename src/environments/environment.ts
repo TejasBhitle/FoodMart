@@ -10,7 +10,7 @@ export const environment = {
     authDomain: "awesome-foodmart.firebaseapp.com",
     databaseURL: "https://awesome-foodmart.firebaseio.com",
     projectId: "awesome-foodmart",
-    storageBucket: "",
+    storageBucket: "awesome-foodmart.appspot.com",
     messagingSenderId: "501984600810"
   }
 };
