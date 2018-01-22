@@ -29,6 +29,7 @@ import { ProductService } from './product.service';
 
 //3rd party
 import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'angular-4-data-table';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { CustomFormsModule } from 'ng2-validation';
 
     //3rd party
     CustomFormsModule,
+    DataTableModule,
 
     RouterModule.forRoot([
       { path:'', component:HomeComponent },
@@ -66,14 +68,19 @@ import { CustomFormsModule } from 'ng2-validation';
       { path:'order-success', component:OrderSuccessComponent, canActivate:[AuthGuardService] },
       { path:'my/orders', component:MyOrdersComponent, canActivate:[AuthGuardService] },
 
-      { path:'admin/products',
-       component:AdminProductsComponent,
-       canActivate:[AuthGuardService, AdminAuthGuardService]
-      },
-
       { path:'admin/products/new',
        component:ProductFormComponent,
         canActivate:[AuthGuardService, AdminAuthGuardService]
+      },
+
+      { path:'admin/products/:id',
+       component:ProductFormComponent,
+       canActivate:[AuthGuardService, AdminAuthGuardService]
+      },
+
+      { path:'admin/products',
+       component:AdminProductsComponent,
+       canActivate:[AuthGuardService, AdminAuthGuardService]
       },
 
       { path:'admin/orders',
