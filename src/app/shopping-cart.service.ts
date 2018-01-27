@@ -12,6 +12,11 @@ export class ShoppingCartService {
 
   constructor(private db: AngularFireDatabase) { }
 
+  async clearCart(){
+    let cartId = await this.getorCreateCartId();
+    this.db.object('/shopping-cart/'+cartId+'/items').remove();
+  }
+
   private create(){
       return this.db.list('/shopping-cart').push({
         dateCreated: new Date().getTime()
@@ -49,13 +54,17 @@ export class ShoppingCartService {
   private async updateItem(product: Product, change: number){
     let cartId = await this.getorCreateCartId();
     let item$ = this.getItem(cartId,product.$key);
+
     item$.take(1).subscribe(item => {
-      item$.update({
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price,
-        quantity: (item.quantity || 0) + change
-       });
+
+      let quantity = (item.quantity || 0) + change
+      if(quantity === 0) item$.remove();
+      else item$.update({
+            title: product.title,
+            imageUrl: product.imageUrl,
+            price: product.price,
+            quantity:quantity
+           });
     })
   }
 
