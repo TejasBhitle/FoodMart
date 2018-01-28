@@ -27,6 +27,7 @@ import { UserService } from './user.service';
 import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ShoppingCartService } from './shopping-cart.service';
+import { OrderService } from './order.service';
 
 //3rd party
 import { CustomFormsModule } from 'ng2-validation';
@@ -34,6 +35,8 @@ import { DataTableModule } from 'angular-4-data-table';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
+import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,9 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     ProductFormComponent,
     ProductFilterComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    ShoppingCartSummaryComponent,
+    ShippingFormComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +77,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
       { path:'login', component:LoginComponent },
 
       { path:'check-out', component:CheckOutComponent, canActivate:[AuthGuardService] },
-      { path:'order-success', component:OrderSuccessComponent, canActivate:[AuthGuardService] },
+      { path:'order-success/:id', component:OrderSuccessComponent, canActivate:[AuthGuardService] },
       { path:'my/orders', component:MyOrdersComponent, canActivate:[AuthGuardService] },
 
       { path:'admin/products/new',
@@ -103,6 +108,7 @@ import { ProductQuantityComponent } from './product-quantity/product-quantity.co
     CategoryService,
     ProductService,
     ShoppingCartService,
+    OrderService,
   ],
   bootstrap: [AppComponent]
 })
