@@ -1,4 +1,5 @@
 import { AuthService } from './../auth.service';
+import { AppUser } from './../models/app-user';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCart } from './../models/shopping-cart';
@@ -11,16 +12,15 @@ import { Observable } from 'rxjs/Observable';
 })
 export class BootstrapNavbarComponent implements OnInit{
 
-  //appUser: AppUser;
+  appUser: AppUser;
   cart$: Observable<ShoppingCart>;
 
-  constructor(public auth: AuthService, private cartService: ShoppingCartService) {
-
+  constructor(private auth: AuthService, private cartService: ShoppingCartService) {
   }
 
 
   async ngOnInit(){
-    //auth.appUser$.subscribe(appUser => this.appUser = appUser);
+    this.auth.appUser$.subscribe(appUser => this.appUser = appUser);
     this.cart$ = await this.cartService.getCart()
 
   }
